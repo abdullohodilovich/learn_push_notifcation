@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -44,7 +45,7 @@ sealed class NotificationServices {
   }
 
   static NotificationDetails get details {
-    const AndroidNotificationDetails androidNotificationDetails =
+     const AndroidNotificationDetails androidNotificationDetails =
     AndroidNotificationDetails('your channel id', 'your channel name',
         channelDescription: 'your channel description',
         importance: Importance.max,
@@ -69,8 +70,9 @@ sealed class NotificationServices {
   }
 
 
-  static Future<void> sendNotification() async {
+  static Future<void> sendNotification(String title, String body) async {
     await flutterLocalNotificationsPlugin.show(
-        0, "notification keldi", "Error:: ass", details, payload: 'Data');
+        0, title, body, details);
+    // flutterLocalNotificationsPlugin.periodicallyShow(id, title, body, repeatInterval, notificationDetails)
   }
 }
